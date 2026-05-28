@@ -5,7 +5,7 @@ import dsp_module as dm
 # Uncomment plt.show() if you want see plots
 
 # parameters for default signal
-freqs = np.arange(1, 500, 1)      # frequency
+freqs = np.arange(1, 501, 1)      # frequency
 Fs = 1e3                      # sampling frequency
 Ts = 1.0/Fs                   # sampling interval
 start = 0                     # start time
@@ -31,7 +31,7 @@ for f in freqs:
     # 1.2 Visualization in freq domain
     signal_spectrum = np.abs(np.fft.fftshift(np.fft.fft(signal)))
     plt.subplot(2, 1, 2)
-    plt.plot(np.fft.fftshift(np.fft.fftfreq(len(signal), Ts)), signal_spectrum)
+    plt.stem(np.fft.fftshift(np.fft.fftfreq(len(signal), Ts)), signal_spectrum)
     plt.xlabel("frequency, Hz")
     plt.ylabel("|S(f)|")
     plt.title(f"Base spectrum")
@@ -124,6 +124,9 @@ for f in freqs:
     MSE.append(mse)
 
 plt.plot(freqs, MSE)
+plt.xlabel("f, Hz")
+plt.ylabel("MSE")
+plt.title("MSE")
 # plt.yscale('log')
 plt.show()
 
